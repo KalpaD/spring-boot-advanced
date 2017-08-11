@@ -1,0 +1,49 @@
+package com.kds.boot.springbootadvanced.bootstrap;
+
+import com.kds.boot.springbootadvanced.model.Author;
+import com.kds.boot.springbootadvanced.model.Book;
+import com.kds.boot.springbootadvanced.repositories.AuthorRepository;
+import com.kds.boot.springbootadvanced.repositories.BookRepository;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
+
+/**
+ * Created by kalpasenanayake on 11/8/17.
+ */
+
+@Component
+public class DevBootStrap implements ApplicationListener<ContextRefreshedEvent> {
+
+    private AuthorRepository authorRepository;
+    private BookRepository bookRepository;
+
+    public DevBootStrap(AuthorRepository authorRepository, BookRepository bookRepository) {
+        this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
+    }
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        initData();
+    }
+
+    private void initData() {
+
+        Author neo = new Author("Neo", "Anderson");
+        Book matrix = new Book("The Metrix", "1234", "The agent book publishers");
+        neo.getBooks().add(matrix);
+        matrix.getAuthors().add(neo);
+
+        authorRepository.save(neo);
+        bookRepository.save(matrix);
+
+        Author michel = new Author("Mechel", "Bay");
+        Book tranformers = new Book("Transformers", "3456", "The Cybertron publishers");
+        michel.getBooks().add(tranformers);
+        tranformers.getAuthors().add(michel);
+
+        authorRepository.save(michel);
+        bookRepository.save(tranformers);
+    }
+}
