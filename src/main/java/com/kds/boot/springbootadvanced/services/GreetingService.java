@@ -5,5 +5,5 @@ package com.kds.boot.springbootadvanced.services;
  */
 public interface GreetingService {
 
-    String greet();
+    String sayGreeting();
 }
