@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * Created by kalpasenanayake on 11/8/17.
  */
 
-@Component
+//@Component
 public class DevBootStrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private AuthorRepository authorRepository;

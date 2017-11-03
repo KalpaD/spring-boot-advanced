@@ -1,13 +1,9 @@
 package com.kds.boot.springbootadvanced;
 
-import com.kds.boot.springbootadvanced.repositories.AuthorRepository;
-import guru.springframework.norris.chuck.ChuckNorrisQuotes;
+import com.kds.boot.springbootadvanced.config.DataSourceConfig;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 // This annotation only do the component scan from com.kds.boot.springbootadvanced -> sub
 // packages if we want more scan locations we need to tell spring.
@@ -15,7 +11,7 @@ import org.springframework.context.annotation.ImportResource;
 
 // @ImportResource() we can use this annotation to load xml based spring configuration.
 @SpringBootApplication
-@EnableAutoConfiguration
+@EnableConfigurationProperties(DataSourceConfig.class)
 public class SpringBootAdvancedApplication {
 
 	public static void main(String[] args) {

@@ -1,0 +1,4 @@
+db:
+  userName: uname
+  password: passwd
+  url: url
