@@ -1,8 +1,10 @@
 package com.kds.boot.springbootadvanced.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,13 +20,21 @@ import org.springframework.stereotype.Component;
  */
 @Primary
 @Component
-@PropertySource("classpath:db_config.properties")
+@PropertySources( {
+        @PropertySource("classpath:db_config.properties"),
+        @PropertySource("classpath:db_con.properties")
+})
 @ConfigurationProperties(prefix = "db")
 public class DataSourceConfig {
 
     private String userName;
     private String password;
     private String url;
+
+    @Value("${db.con.max}")
+    private int max;
+    @Value("${db.con.min}")
+    private int min;
 
     public String getUserName() {
         return userName;
@@ -48,5 +58,21 @@ public class DataSourceConfig {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
     }
 }

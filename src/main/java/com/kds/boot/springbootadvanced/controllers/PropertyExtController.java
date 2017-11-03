@@ -24,6 +24,10 @@ public class PropertyExtController {
                 return dataSource.getUserName();
             case "url":
                 return dataSource.getUrl();
+            case "max":
+                return Integer.toString(dataSource.getMax());
+            case "min":
+                return Integer.toString(dataSource.getMin());
             default:
                 return dataSource.getUserName();
         }
